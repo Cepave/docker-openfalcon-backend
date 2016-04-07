@@ -11,7 +11,7 @@ VOLUME $WORKDIR/logs
 ADD open-falcon.tar.gz $WORKDIR
 
 WORKDIR $WORKDIR
-COPY run.sh .
+COPY run.sh ./
 
 # Port
 # agent:      1988

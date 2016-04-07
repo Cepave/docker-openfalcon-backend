@@ -1,11 +1,11 @@
-# docker-openfalcon
+# docker-openfalcon-backend
 
 ## Build
 
 Enter the following command in the repo directory.
 
 ```
-$ sudo docker build --force-rm=true -t openfalcon .
+$ sudo docker build --force-rm=true -t backend .
 ```
 
 ## Run
@@ -15,7 +15,7 @@ $ sudo docker build --force-rm=true -t openfalcon .
 Run OpenFalcon agent
 
 ```
-$ sudo docker run -d -p 1988:1988 openfalcon agent
+$ sudo docker run -d -p 1988:1988 backend agent
 ```
 
 Port of OpenFalcon components
@@ -38,5 +38,5 @@ Port of OpenFalcon components
 + Self-defined configurations
 
 ```
-$ sudo docker run -d -p 1988:1988 -v config:/home/openfalcon/config openfalcon agent
+$ sudo docker run -d -p 1988:1988 -v config:/home/openfalcon/config backend agent
 ```

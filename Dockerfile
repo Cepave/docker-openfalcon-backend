@@ -9,6 +9,7 @@ VOLUME $WORKDIR/logs
 
 # Install Open-Falcon
 ADD open-falcon.tar.gz $WORKDIR
+RUN ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json
 
 WORKDIR $WORKDIR
 COPY run.sh ./

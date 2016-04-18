@@ -15,7 +15,7 @@ fi
 modules=($@)
 pattern=""
 for (( idx=0; idx<$#; ++idx )) ; do
-  pattern=$pattern${modules[$idx]}"|"
+  pattern=$pattern"falcon-"${modules[$idx]}"|"
 done
 pattern=${pattern:0:-1}
 pid=$(pgrep -f -U $(id -u) "$pattern")

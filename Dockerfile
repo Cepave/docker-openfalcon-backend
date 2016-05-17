@@ -8,11 +8,11 @@ ENV WORKDIR=/home/openfalcon CONFIGDIR=/home/openfalcon/config
 VOLUME $WORKDIR/logs
 
 # Install Open-Falcon
-ADD open-falcon.tar.gz $WORKDIR
 RUN \
-  ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json \
-  && apt-get update \
+  apt-get update \
   && apt-get install -y ca-certificates git
+ADD open-falcon.tar.gz $WORKDIR
+RUN ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json
 
 WORKDIR $WORKDIR
 COPY run.sh ./

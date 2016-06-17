@@ -1,16 +1,21 @@
-FROM ubuntu:14.04
+FROM alpine:3.4
 
 MAINTAINER minimum@cepave.com
 
 ENV WORKDIR=/home/openfalcon CONFIGDIR=/home/openfalcon/config
 
-# Volume
-VOLUME $WORKDIR/logs
+# Set timezone, bash, config dir
+# Set alias in the case of user want to execute control in their terminal
+RUN \
+  apk add --no-cache tzdata bash \
+  && cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime \
+  && echo "Asia/Taipei" > /etc/timezone \
+  && apk del tzdata \
+  && echo "alias ps='pstree'" > ~/.bashrc \
+  && mkdir -p $WORKDIR/logs
 
 # Install Open-Falcon
-RUN \
-  apt-get update \
-  && apt-get install -y ca-certificates git
+RUN apk add --no-cache ca-certificates git iproute2
 ADD open-falcon.tar.gz $WORKDIR
 RUN ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json
 
@@ -32,4 +37,4 @@ COPY run.sh ./
 EXPOSE 1988 6055 1234 1235 6070 6071 6030 6031 6080 6081 6090 9966 6066 8002 6060 8433
 
 # Start
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["bash", "run.sh"]

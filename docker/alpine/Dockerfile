@@ -1,8 +1,8 @@
 FROM alpine:3.4
 
-MAINTAINER minimum@cepave.com
+MAINTAINER cheminlin@cepave.com
 
-ENV WORKDIR=/home/openfalcon CONFIGDIR=/home/openfalcon/config
+ENV WORKDIR=/home/openfalcon DOCKERDIR=docker/alpine CONFIGDIR=/home/openfalcon/config
 
 # Set timezone, bash, config dir
 # Set alias in the case of user want to execute control in their terminal
@@ -15,11 +15,11 @@ RUN \
 
 # Install Open-Falcon
 RUN apk add --no-cache ca-certificates git iproute2
-ADD open-falcon.tar.gz $WORKDIR
-RUN ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json
+ADD $DOCKERDIR/open-falcon.tar.gz $WORKDIR
+RUN ln -sf $CONFIGDIR/api.json $WORKDIR/bin/fe/cfg.json
 
 WORKDIR $WORKDIR
-COPY run.sh ./
+COPY $DOCKERDIR/run.sh $WORKDIR/
 
 # Port
 # agent:      1988
@@ -36,4 +36,4 @@ COPY run.sh ./
 EXPOSE 1988 6055 1234 1235 6070 6071 6030 6031 6080 6081 6090 9966 6066 8002 6060 8433
 
 # Start
-ENTRYPOINT ["bash", "run.sh"]
+ENTRYPOINT ["/bin/bash", "run.sh"]

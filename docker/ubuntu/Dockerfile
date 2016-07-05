@@ -1,21 +1,19 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.04.2
 
 MAINTAINER minimum@cepave.com
 
-ENV WORKDIR=/home/openfalcon CONFIGDIR=/home/openfalcon/config
-
-# Volume
-VOLUME $WORKDIR/logs
+ENV WORKDIR=/home/openfalcon DOCKERDIR=docker/ubuntu CONFIGDIR=/home/openfalcon/config
 
 # Install Open-Falcon
 RUN \
   apt-get update \
-  && apt-get install -y ca-certificates git
-ADD open-falcon.tar.gz $WORKDIR
-RUN ln -s $WORKDIR/config/api.json $WORKDIR/bin/fe/cfg.json
+  && apt-get install -y ca-certificates git \
+  && mkdir -p $WORKDIR/logs
+ADD $DOCKERDIR/open-falcon.tar.gz $WORKDIR
+RUN ln -sf $CONFIGDIR/api.json $WORKDIR/bin/fe/cfg.json
 
 WORKDIR $WORKDIR
-COPY run.sh ./
+COPY $DOCKERDIR/run.sh $WORKDIR/
 
 # Port
 # agent:      1988
@@ -32,4 +30,5 @@ COPY run.sh ./
 EXPOSE 1988 6055 1234 1235 6070 6071 6030 6031 6080 6081 6090 9966 6066 8002 6060 8433
 
 # Start
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["/bin/bash", "run.sh"]
+

@@ -11,9 +11,15 @@ RUN \
   && mkdir -p $WORKDIR $CONFIGDIR
 ADD $DOCKERDIR/open-falcon.tar.gz $WORKDIR
 RUN \
+  touch $CONFIGDIR/agent.json && \
+  ln -sf $CONFIGDIR/agent.json /home/agent/config/cfg.json && \
+  rm -f $CONFIGDIR/agent.json && \
   touch $CONFIGDIR/aggregator.json && \
   ln -sf $CONFIGDIR/aggregator.json /home/aggregator/config/cfg.json && \
   rm -f $CONFIGDIR/aggregator.json && \
+  touch $CONFIGDIR/alarm.json && \
+  ln -sf $CONFIGDIR/alarm.json /home/alarm/config/cfg.json && \
+  rm -f $CONFIGDIR/alarm.json && \
   touch $CONFIGDIR/fe.json && \
   ln -sf $CONFIGDIR/fe.json /home/fe/config/cfg.json && \
   rm -f $CONFIGDIR/fe.json && \

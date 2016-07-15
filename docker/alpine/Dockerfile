@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 MAINTAINER cheminlin@cepave.com
 
-ENV WORKDIR=/home/openfalcon DOCKERDIR=docker/alpine CONFIGDIR=/config
+ENV WORKDIR=/home DOCKERDIR=docker/alpine CONFIGDIR=/config
 
 # Set timezone, bash, config dir
 # Set alias in the case of user want to execute control in their terminal

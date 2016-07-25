@@ -4,7 +4,7 @@ MAINTAINER minimum@cepave.com
 
 ARG DOCKERDIR=docker/ubuntu
 ARG CONFIGDIR=/config
-ENV WORKDIR=/home
+ENV WORKDIR=/home TZ=Asia/Taipei
 
 # Install Open-Falcon
 RUN \

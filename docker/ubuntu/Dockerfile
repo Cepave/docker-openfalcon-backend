@@ -2,7 +2,9 @@ FROM ubuntu:14.04.2
 
 MAINTAINER minimum@cepave.com
 
-ENV WORKDIR=/home DOCKERDIR=docker/ubuntu CONFIGDIR=/config
+ARG DOCKERDIR=docker/ubuntu
+ARG CONFIGDIR=/config
+ENV WORKDIR=/home TZ=Asia/Taipei
 
 # Install Open-Falcon
 RUN \

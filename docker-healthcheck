@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+declare -A arr=(["agent"]=1988 ["aggregator"]=6055 ["alarm"]=9912 ["fe"]=1234)
+arr+=(["graph"]=6071 ["hbs"]=6031 ["judge"]=6081 ["nodata"]=6090 ["query"]=9966)
+arr+=(["sender"]=6066 ["task"]=8002 ["transfer"]=6060)
+
+if [ -z ${MODULE_NAME+x} ]; then
+  echo >&2 "Health check error: MODULE_NAME is unset"
+  exit 1
+fi
+
+curl -sSf http://localhost:${arr[$MODULE_NAME]}/health || exit 1

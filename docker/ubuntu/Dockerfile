@@ -9,7 +9,7 @@ ENV WORKDIR=/home TZ=Asia/Taipei
 # Install Open-Falcon
 RUN \
   apt-get update \
-  && apt-get install -y ca-certificates git \
+  && apt-get install -y ca-certificates git curl \
   && mkdir -p $WORKDIR $CONFIGDIR
 ADD $DOCKERDIR/open-falcon.tar.gz $WORKDIR
 RUN \
@@ -52,6 +52,7 @@ RUN \
 
 WORKDIR $WORKDIR
 COPY $DOCKERDIR/run.sh $WORKDIR/
+COPY docker-healthcheck /usr/local/bin/
 
 # Port
 # agent:      1988
@@ -69,4 +70,5 @@ EXPOSE 1988 6055 1234 1235 6070 6071 6030 6031 6080 6081 6090 9966 6066 8002 606
 
 # Start
 ENTRYPOINT ["/bin/bash", "run.sh"]
-
+HEALTHCHECK --interval=60s --timeout=2s \
+  CMD [ "bash", "docker-healthcheck" ]

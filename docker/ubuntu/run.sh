@@ -4,7 +4,7 @@ set -e
 
 # Launch
 echo "start $@"
-./open-falcon start $@
+./open-falcon start --console-output $@
 errno=$?
 if [ $errno -ne 0 ] ; then
   echo "Failed to start"

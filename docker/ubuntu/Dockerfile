@@ -55,18 +55,9 @@ COPY $DOCKERDIR/run.sh $WORKDIR/
 COPY docker-healthcheck /usr/local/bin/
 
 # Port
-# agent:      1988
-# aggregator: 6055
-# fe:         1234 1235
-# graph:      6070 6071
-# hbs:        6030 6031
-# judge:      6080 6081
-# nodata:     6090
-# query:      9966
-# sender:     6066
-# task:       8002
-# transfer:   6060 8433
-EXPOSE 1988 6055 1234 1235 6070 6071 6030 6031 6080 6081 6090 9966 6066 8002 6060 8433
+# rpc:  10070
+# http: 10080 10081
+EXPOSE 10070 10080 10081
 
 # Start
 ENTRYPOINT ["/bin/bash", "run.sh"]

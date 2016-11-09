@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-declare -A arr=(["agent"]=1988 ["aggregator"]=6055 ["alarm"]=9912 ["fe"]=1234)
-arr+=(["graph"]=6071 ["hbs"]=6031 ["judge"]=6081 ["nodata"]=6090 ["query"]=9966)
-arr+=(["sender"]=6066 ["task"]=8002 ["transfer"]=6060)
+declare -A arr=(["agent"]=1988 ["aggregator"]=10080 ["alarm"]=10080 ["fe"]=10080)
+arr+=(["graph"]=10080 ["hbs"]=10080 ["judge"]=10080 ["nodata"]=10080 ["query"]=10080)
+arr+=(["sender"]=10080 ["task"]=10080 ["transfer"]=10080)
 
 if [ -z ${MODULE_NAME+x} ]; then
   echo >&2 "Health check error: MODULE_NAME is unset"

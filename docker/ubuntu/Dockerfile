@@ -9,7 +9,7 @@ ENV WORKDIR=/home TZ=Asia/Taipei
 # Install Open-Falcon
 RUN \
   apt-get update \
-  && apt-get install -y ca-certificates git curl \
+  && apt-get install -y ca-certificates git curl jq \
   && mkdir -p $WORKDIR $CONFIGDIR
 ADD $DOCKERDIR/open-falcon.tar.gz $WORKDIR
 RUN \
@@ -48,7 +48,10 @@ RUN \
   rm -f $CONFIGDIR/task.json && \
   touch $CONFIGDIR/transfer.json && \
   ln -sf $CONFIGDIR/transfer.json /home/transfer/config/cfg.json && \
-  rm -f $CONFIGDIR/transfer.json
+  rm -f $CONFIGDIR/transfer.json && \
+  touch $CONFIGDIR/nqm-mng.json && \
+  ln -sf $CONFIGDIR/nqm-mng.json /home/nqm-mng/config/cfg.json && \
+  rm -f $CONFIGDIR/nqm-mng.json
 
 WORKDIR $WORKDIR
 COPY $DOCKERDIR/run.sh $WORKDIR/

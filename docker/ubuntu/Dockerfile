@@ -51,7 +51,10 @@ RUN \
   rm -f $CONFIGDIR/transfer.json && \
   touch $CONFIGDIR/nqm-mng.json && \
   ln -sf $CONFIGDIR/nqm-mng.json /home/nqm-mng/config/cfg.json && \
-  rm -f $CONFIGDIR/nqm-mng.json
+  rm -f $CONFIGDIR/nqm-mng.json && \
+  touch $CONFIGDIR/api.json && \
+  ln -sf $CONFIGDIR/api.json /home/api/config/cfg.json && \
+  rm -f $CONFIGDIR/api.json
 
 WORKDIR $WORKDIR
 COPY $DOCKERDIR/run.sh $WORKDIR/

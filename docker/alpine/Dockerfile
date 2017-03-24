@@ -57,9 +57,9 @@ RUN \
   touch $CONFIGDIR/nqm-mng.json && \
   ln -sf $CONFIGDIR/nqm-mng.json /home/nqm-mng/config/cfg.json && \
   rm -f $CONFIGDIR/nqm-mng.json && \
-  touch $CONFIGDIR/api.json && \
-  ln -sf $CONFIGDIR/api.json /home/api/config/cfg.json && \
-  rm -f $CONFIGDIR/api.json
+  touch $CONFIGDIR/f2e-api.json && \
+  ln -sf $CONFIGDIR/f2e-api.json /home/f2e-api/config/cfg.json && \
+  rm -f $CONFIGDIR/f2e-api.json
 
 WORKDIR $WORKDIR
 COPY $DOCKERDIR/run.sh $WORKDIR/
